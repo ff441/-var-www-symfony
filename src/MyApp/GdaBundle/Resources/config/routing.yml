@@ -13,6 +13,3 @@ myapp_anomalie_modifier:
 myapp_anomalie_supprimer:
   pattern: /anomalie/supprimer/{id}
   defaults: { _controller: MyAppGdaBundle:Anomalie:supprimer }
-myapp_anomalie_merdique:
-  pattern: /anomalie/supprimer/{id}
-  defaults: { _controller: MyAppGdaBundle:Anomalie:supprimer }
