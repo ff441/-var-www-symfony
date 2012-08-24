@@ -1,0 +1,10 @@
+<html>
+	<body>
+		<h1>Liste des états</h1>
+		{% for etat in etats %}
+			<p>{{ etat.etat }}</p>
+		{% else %}
+			<p>Aucun etat n'a été trouvée.</p>
+		{% endfor %}
+	</body>
+</html>

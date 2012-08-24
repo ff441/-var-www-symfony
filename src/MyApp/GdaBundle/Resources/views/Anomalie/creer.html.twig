@@ -1,0 +1,49 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-fr.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" type="text/css" />
+
+
+<h1>Créer une anomalie</h1>
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+<form action="" method="post" {{ form_enctype(form) }}>    
+    <!-- Les erreurs générales du formulaire. -->
+    {{ form_errors(form) }}
+    <div>
+        <!-- Génération du label. -->
+        {{ form_label(form.dateCreation, "Date de création") }}    
+        <!-- Affichage des erreurs pour ce champ précis. -->
+        {{ form_errors(form.dateCreation) }}
+        <!-- Génération de l'input. -->
+        {{ form_widget(form.dateCreation) }}
+    </div>
+    <!-- Idem pour un autre champ. -->
+    <div>
+        {{ form_label(form.createur, "Détectée par") }}
+        {{ form_errors(form.createur) }}
+        {{ form_widget(form.createur) }}
+    </div>
+    <div>
+        {{ form_label(form.projet, "Version") }}
+        {{ form_errors(form.projet) }}
+        {{ form_widget(form.projet) }}
+    </div>   
+        <!-- Génération des champs pas encore écrits-->
+        {{ form_rest(form) }}   
+    <div>
+        <input type="submit" />
+    </div>
+    
+</form>
+<p><a href="{{ path('myapp_anomalie_lister') }}">Retour à la liste des anomalies</a></p>
+
+
+<script> 
+    $("form input.date").datepicker({
+        dateFormat: 'dd/mm/yy', 
+        firstDay:1
+    }).attr("readonly","readonly"); 
+</script>
