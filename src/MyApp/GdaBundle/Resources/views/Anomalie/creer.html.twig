@@ -1,21 +1,18 @@
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
-<script type="text/javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-fr.js"></script>
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" type="text/css" />
-
-
 {# Partie qui rempli le body #}
 {# src/MyApp/GdaBundle/Resources/views/Anomalie/creer.html.twig #}
-
 {% extends "MyAppGdaBundle::layout.html.twig" %}
 
 {% block title %}
 Liste des anomalies - {{ parent() }}
 {% endblock %}
 
-{% block Gda_body %}
+{% block gda_body %}
 
 <h2>Créer une anomalie</h2>
+<!-- Message pour l'ajout-->
+{% if message %}
+     <p class="control-group success">{{ message }}</p>
+{% endif %}
 
 <ul>
     <form action="" method="post" {{ form_enctype(form) }}>    
@@ -49,26 +46,6 @@ Liste des anomalies - {{ parent() }}
             </form>
             <p><a href="{{ path('myapp_anomalie_lister') }}">Retour à la liste des anomalies</a></p>
         </ul>
-
-
-        {% if message %}
-        <p>{{ message }}</p>
-        {% endif %}
-        
-        {# Gestion du calendrier #}
-        {# TODO : A METTRE DANS LE LAYOUT GENERAL #}
-
-
-            <script> 
-                 $("form input.date").datepicker({
-                     dateFormat: 'dd/mm/yy', 
-                       firstDay:1
-                 }).attr("readonly","readonly"); 
-            </script>
-{# Fin du block Gda_body #}        
+            
+{# Fin du block gda_body #}        
 {% endblock %}
-
-
-
-
-
