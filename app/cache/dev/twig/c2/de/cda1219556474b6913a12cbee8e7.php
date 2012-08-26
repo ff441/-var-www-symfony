@@ -7,110 +7,128 @@ class __TwigTemplate_c2decda1219556474b6913a12cbee8e7 extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = false;
+        $this->parent = $this->env->loadTemplate("MyAppGdaBundle::layout.html.twig");
 
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
+            'gda_body' => array($this, 'block_gda_body'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "MyAppGdaBundle::layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        // line 1
-        echo "<script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-latest.min.js\"></script>
-<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js\"></script>
-<script type=\"text/javascript\" src=\"http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-fr.js\"></script>
-<link rel=\"stylesheet\" href=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css\" type=\"text/css\" />
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
 
-
-<h1>Créer une anomalie</h1>
+    // line 5
+    public function block_title($context, array $blocks = array())
+    {
+        // line 6
+        echo "Liste des anomalies - ";
+        $this->displayParentBlock("title", $context, $blocks);
+        echo "
 ";
-        // line 8
+    }
+
+    // line 9
+    public function block_gda_body($context, array $blocks = array())
+    {
+        // line 10
+        echo "
+<h2>Créer une anomalie</h2>
+<!-- Message pour l'ajout-->
+";
+        // line 13
         if ($this->getContext($context, "message")) {
-            // line 9
-            echo "    <p>";
+            // line 14
+            echo "     <p class=\"control-group success\">";
             echo twig_escape_filter($this->env, $this->getContext($context, "message"), "html", null, true);
             echo "</p>
 ";
         }
-        // line 11
+        // line 16
         echo "
-<form action=\"\" method=\"post\" ";
-        // line 12
+<ul>
+    <form action=\"\" method=\"post\" ";
+        // line 18
         echo $this->env->getExtension('form')->renderEnctype($this->getContext($context, "form"));
         echo ">    
-    <!-- Les erreurs générales du formulaire. -->
+        <!-- Les erreurs générales du formulaire. -->
     ";
-        // line 14
+        // line 20
         echo $this->env->getExtension('form')->renderErrors($this->getContext($context, "form"));
         echo "
-    <div>
-        <!-- Génération du label. -->
+        <div>
+            <!-- Génération du label. -->
         ";
-        // line 17
+        // line 23
         echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, "form"), "dateCreation"), "Date de création");
         echo "    
-        <!-- Affichage des erreurs pour ce champ précis. -->
-        ";
-        // line 19
-        echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, "form"), "dateCreation"));
-        echo "
-        <!-- Génération de l'input. -->
-        ";
-        // line 21
-        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "dateCreation"));
-        echo "
-    </div>
-    <!-- Idem pour un autre champ. -->
-    <div>
+            <!-- Affichage des erreurs pour ce champ précis. -->
         ";
         // line 25
+        echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, "form"), "dateCreation"));
+        echo "
+            <!-- Génération de l'input. -->
+        ";
+        // line 27
+        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "dateCreation"));
+        echo "
+        </div>
+        <!-- Idem pour un autre champ. -->
+        <div>
+        ";
+        // line 31
         echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, "form"), "createur"), "Détectée par");
         echo "
         ";
-        // line 26
+        // line 32
         echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, "form"), "createur"));
         echo "
         ";
-        // line 27
+        // line 33
         echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "createur"));
         echo "
-    </div>
-    <div>
+            </div>
+            <div>
         ";
-        // line 30
+        // line 36
         echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, "form"), "projet"), "Version");
         echo "
         ";
-        // line 31
+        // line 37
         echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, "form"), "projet"));
         echo "
         ";
-        // line 32
+        // line 38
         echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "projet"));
         echo "
-    </div>   
-        <!-- Génération des champs pas encore écrits-->
+                </div>   
+                <!-- Génération des champs pas encore écrits-->
         ";
-        // line 35
+        // line 41
         echo $this->env->getExtension('form')->renderRest($this->getContext($context, "form"));
         echo "   
-    <div>
-        <input type=\"submit\" />
-    </div>
-    
-</form>
-<p><a href=\"";
-        // line 41
+                <div>
+                    <input type=\"submit\" />
+                </div>
+
+            </form>
+            <p><a href=\"";
+        // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("myapp_anomalie_lister"), "html", null, true);
         echo "\">Retour à la liste des anomalies</a></p>
-
-
-<script> 
-    \$(\"form input.date\").datepicker({
-        dateFormat: 'dd/mm/yy', 
-        firstDay:1
-    }).attr(\"readonly\",\"readonly\"); 
-</script>";
+        </ul>
+            
+";
+        // line 50
+        echo "        
+";
     }
 
     public function getTemplateName()
@@ -125,6 +143,6 @@ class __TwigTemplate_c2decda1219556474b6913a12cbee8e7 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  102 => 41,  93 => 35,  87 => 32,  83 => 31,  79 => 30,  73 => 27,  69 => 26,  65 => 25,  58 => 21,  53 => 19,  48 => 17,  42 => 14,  37 => 12,  34 => 11,  28 => 9,  26 => 8,  17 => 1,);
+        return array (  128 => 50,  122 => 47,  113 => 41,  107 => 38,  103 => 37,  99 => 36,  93 => 33,  89 => 32,  85 => 31,  78 => 27,  73 => 25,  68 => 23,  62 => 20,  57 => 18,  53 => 16,  47 => 14,  45 => 13,  40 => 10,  37 => 9,  30 => 6,  27 => 5,);
     }
 }
