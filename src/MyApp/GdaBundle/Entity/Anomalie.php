@@ -24,8 +24,7 @@ class Anomalie {
     private $dateCreation;
 
     /**
-     * @ORM\Column(type="datetime")
-     *      
+     * @ORM\Column(type="datetime")      
      */
     private $dateCloture;
 
@@ -218,5 +217,4 @@ class Anomalie {
         return $this->categorie;
     }
     
-}    
-
+}
