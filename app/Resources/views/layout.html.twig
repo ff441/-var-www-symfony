@@ -17,18 +17,18 @@
 			<div id="header" class="hero-unit">
 				<h1>Gestion des anomalies</h1>
 				<p>Projet d'étude sur symfony pour gérer les anomalies d'un projet</p>
-				<p><a class="btn btn-primary btn-large" href="srblog.info">
+				<p><a class="btn btn-primary btn-large" href="http://srblog.info">
 					Accéder à mon blog
 				</a></p>
 			</div>
 
 			<div class="row">
 				<div id="menu" class="span3">
-					<h3>Le blog</h3>
+					<h3>Menu</h3>
 					<ul class="nav nav-pills nav-stacked">
-						<li><a href="{{ path('myapp_lister_anomalie') }}">Recherche Anomalie</a></li>
-						<li><a href="{{ path('myapp_creer_anomalie') }}">Ajouter une Anomalie</a></li>
-						<li><a href="{{ path('myapp_accueil_admin') }}">Administration</a></li>
+						<li><a href="{{ path('myapp_anomalie_lister') }}">Recherche Anomalie</a></li>
+						<li><a href="{{ path('myapp_anomalie_creer') }}">Ajouter une Anomalie</a></li>
+						{#<li><a href="{{ path('myapp_accueil_admin') }}">Administration</a></li>#}
 					</ul>				
 				</div>
 				<div id="content" class="span9">
@@ -40,7 +40,9 @@
 			<hr>
 
 			<footer>
+                            <div style="text-align: center"
 				<p>Aucun copyright production &copy; 2012.</p>
+                            </div>
 			</footer>
 		</div>
 
@@ -48,6 +50,16 @@
 		{# Ajoutez ces javascripts si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+                <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+                <script type="text/javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-fr.js"></script>
+                <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" type="text/css" />
+                <script> 
+                    $("form input.date").datepicker({
+                        dateFormat: 'dd/mm/yy', 
+                          firstDay:1
+                    }).attr("readonly","readonly"); 
+                </script>
 	{% endblock %}
 
 	</body>
