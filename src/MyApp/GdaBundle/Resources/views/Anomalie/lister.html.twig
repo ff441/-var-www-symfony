@@ -1,4 +1,12 @@
-<h1>Liste des anomalies</h1>
+{# Partie qui rempli le body #}
+{# src/MyApp/GdaBundle/Resources/views/Anomalie/lister.html.twig #}
+{% extends "MyAppGdaBundle::layout.html.twig" %}
+
+{% block title %}
+Liste des anomalies - {{ parent() }}
+{% endblock %}
+
+{% block gda_body %}
 <p><a href="{{ path('myapp_anomalie_creer') }}">Creer une anomalie</a><p>
 <table>
 {% for a in anomalies %}
@@ -6,10 +14,50 @@
 		<td>{{ a.id }}</td>
 		<td>{{ a.projet }}</td>
 		<td>{{ a.dateCreation|date('d/m/Y') }}</td>
-		<td>{{ a.etat }}</td>
-		<td><a href="{{ path('myapp_anomalie_modifier', { 'id': a.id }) }}">Détail</a></td>		
+		<td>{{ a.etat.getEtat() }}</td>
+		<td><a href="{{ path('myapp_anomalie_creer', { 'id': a.id }) }}">Détail</a></td>		
 	</tr>
 {% else %}
 	<tr><td>Aucune anomalie en-cours</td></tr>
-{% endfor %}
+{% endfor %}      
 </table>
+
+{# ------------------------------------------- #}
+{#       Detail de l'anomalie sélectionnée     #}
+{# ------------------------------------------- #}
+<ul>
+    <form action="" method="post" {{ form_enctype(form) }}>    
+        <!-- Les erreurs générales du formulaire. -->
+    {{ form_errors(form) }}
+        <div>
+            <!-- Génération du label. -->
+        {{ form_label(form.dateCreation, "Date de création") }}    
+            <!-- Affichage des erreurs pour ce champ précis. -->
+        {{ form_errors(form.dateCreation) }}
+            <!-- Génération de l'input. -->
+        {{ form_widget(form.dateCreation) }}
+        </div>
+        <!-- Idem pour un autre champ. -->
+        <div>
+        {{ form_label(form.createur, "Détectée par") }}
+        {{ form_errors(form.createur) }}
+        {{ form_widget(form.createur) }}
+        </div>
+        <div>
+        {{ form_label(form.projet, "Version") }}
+        {{ form_errors(form.projet) }}
+        {{ form_widget(form.projet) }}
+        </div>   
+        <!-- Génération des champs pas encore écrits-->
+        {{ form_rest(form) }}   
+        <div>
+           <input type="submit" />
+        </div>
+    </form>
+        <p><a href="{{ path('myapp_anomalie_lister') }}">Retour à la liste des anomalies</a></p>
+</ul>
+
+
+
+{# Fin block GdaBody #}
+{% endblock %}
