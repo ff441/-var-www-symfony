@@ -1,5 +1,14 @@
 <?php
 
+/* HEADER
+ * 24/08/2012
+ * CREATION DU FICHIER 
+ * --------------------------
+ * 27/08/2012
+ * Ajout du champ description 
+ */
+
+
 namespace MyApp\GdaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -56,6 +65,11 @@ class Anomalie {
     private $projet;
     
     
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+    
     
     /**
      * @ORM\ManyToOne(targetEntity="Categorie")
@@ -100,8 +114,7 @@ class Anomalie {
     }
 
     /**
-     * Get dateCloture
-     *
+     * Get dateCloture     
      * @return date 
      */
     public function getDateCloture() {
@@ -109,8 +122,7 @@ class Anomalie {
     }
 
     /**
-     * Set etat
-     *
+     * Set etat     
      * @param MyApp\GdaBundle\Entity\Etat $etat
      */
     public function setEtat(\MyApp\GdaBundle\Entity\Etat $etat) {
@@ -118,8 +130,7 @@ class Anomalie {
     }
 
     /**
-     * Get etat
-     *
+     * Get etat     
      * @return MyApp\GdaBundle\Entity\Etat 
      */
     public function getEtat() {
@@ -127,8 +138,7 @@ class Anomalie {
     }
 
     /**
-     * Set createur
-     *
+     * Set createur     
      * @param MyApp\GdaBundle\Entity\Utilisateur $createur
      */
     public function setCreateur(\MyApp\GdaBundle\Entity\Utilisateur $createur) {
@@ -136,8 +146,7 @@ class Anomalie {
     }
 
     /**
-     * Get createur
-     *
+     * Get createur     
      * @return MyApp\GdaBundle\Entity\Utilisateur 
      */
     public function getCreateur() {
@@ -145,8 +154,7 @@ class Anomalie {
     }
 
     /**
-     * Set proprietaire
-     *
+     * Set proprietaire     
      * @param MyApp\GdaBundle\Entity\Utilisateur $proprietaire
      */
     public function setProprietaire(\MyApp\GdaBundle\Entity\Utilisateur $proprietaire) {
@@ -154,8 +162,7 @@ class Anomalie {
     }
 
     /**
-     * Get proprietaire
-     *
+     * Get proprietaire     
      * @return MyApp\GdaBundle\Entity\Utilisateur 
      */
     public function getProprietaire() {
@@ -163,8 +170,7 @@ class Anomalie {
     }
 
     /**
-     * Set solveur
-     *
+     * Set solveur     
      * @param MyApp\GdaBundle\Entity\Utilisateur $solveur
      */
     public function setSolveur(\MyApp\GdaBundle\Entity\Utilisateur $solveur) {
@@ -172,8 +178,7 @@ class Anomalie {
     }
 
     /**
-     * Get solveur
-     *
+     * Get solveur     
      * @return MyApp\GdaBundle\Entity\Utilisateur 
      */
     public function getSolveur() {
@@ -181,8 +186,7 @@ class Anomalie {
     }
 
     /**
-     * Set projet
-     *
+     * Set projet     
      * @param MyApp\GdaBundle\Entity\Projet $projet
      */
     public function setProjet(\MyApp\GdaBundle\Entity\Projet $projet) {
@@ -190,8 +194,7 @@ class Anomalie {
     }
 
     /**
-     * Get projet
-     *
+     * Get projet     
      * @return MyApp\GdaBundle\Entity\Projet 
      */
     public function getProjet() {
@@ -199,8 +202,7 @@ class Anomalie {
     }
     
     /**
-     * Set categorie
-     *
+     * Set categorie     
      * @param MyApp\GdaBundle\Entity\Categorie $categorie
      */
     public function setCategorie(\MyApp\GdaBundle\Entity\Categorie $categorie)
@@ -209,12 +211,28 @@ class Anomalie {
     }
     
     /**
-     * Get projet
-     *
+     * Get projet     
      * @return MyApp\GdaBundle\Entity\Categorie
      */
     public function getCategorie() {
         return $this->categorie;
     }
     
+    /**
+     * Set description     
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get texte     
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }   
 }
