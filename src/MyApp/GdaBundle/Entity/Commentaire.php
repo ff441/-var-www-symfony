@@ -21,8 +21,7 @@ class Commentaire
      */    
     private $dateCommentaire;
     
-	
-	/**
+     /**
      * @ORM\Column(type="string", length=255)
      */
     private $texte;
