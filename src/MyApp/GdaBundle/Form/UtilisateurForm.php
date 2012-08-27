@@ -19,15 +19,10 @@ class UtilisateurForm extends AbstractType
             /*A Définir*/
         ;
     }
-    
-    public function getUtilisateur()
-    {
+        
+
+    public function getName() {
         return 'utilisateur';
     }    
 }
-
-
-
-
-
 ?>
