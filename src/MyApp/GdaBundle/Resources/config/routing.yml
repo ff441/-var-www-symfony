@@ -2,14 +2,14 @@ myapp_accueil:
   pattern: /
   defaults: { _controller: MyAppGdaBundle:Default:index }    
 myapp_anomalie_lister:
-  pattern: /anomalie/
+  pattern: /anomalie/{id}
   defaults: { _controller: MyAppGdaBundle:Anomalie:lister }
 myapp_anomalie_creer:
   pattern: /anomalie/creer
-  defaults: { _controller: MyAppGdaBundle:Anomalie:creer }
+  defaults: { _controller: MyAppGdaBundle:Anomalie:anomalie }
 myapp_anomalie_modifier:
   pattern: /anomalie/modifier/{id}
-  defaults: { _controller: MyAppGdaBundle:Anomalie:modifier }
+  defaults: { _controller: MyAppGdaBundle:Anomalie:anomalie }
 myapp_anomalie_supprimer:
   pattern: /anomalie/supprimer/{id}
   defaults: { _controller: MyAppGdaBundle:Anomalie:supprimer }
