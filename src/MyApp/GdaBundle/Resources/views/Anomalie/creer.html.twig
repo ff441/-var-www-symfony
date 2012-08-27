@@ -3,7 +3,7 @@
 {% extends "MyAppGdaBundle::layout.html.twig" %}
 
 {% block title %}
-Liste des anomalies - {{ parent() }}
+Création anomalie - {{ parent() }}
 {% endblock %}
 
 {% block gda_body %}
@@ -31,20 +31,19 @@ Liste des anomalies - {{ parent() }}
         {{ form_label(form.createur, "Détectée par") }}
         {{ form_errors(form.createur) }}
         {{ form_widget(form.createur) }}
-            </div>
-            <div>
+        </div>
+        <div>
         {{ form_label(form.projet, "Version") }}
         {{ form_errors(form.projet) }}
         {{ form_widget(form.projet) }}
-                </div>   
-                <!-- Génération des champs pas encore écrits-->
+        </div>   
+        <!-- Génération des champs pas encore écrits-->
         {{ form_rest(form) }}   
-                <div>
-                    <input type="submit" />
-                </div>
-
-            </form>
-            <p><a href="{{ path('myapp_anomalie_lister') }}">Retour à la liste des anomalies</a></p>
+        <div>
+           <input type="submit" />
+        </div>
+    </form>
+        <p><a href="{{ path('myapp_anomalie_lister') }}">Retour à la liste des anomalies</a></p>
         </ul>
             
 {# Fin du block gda_body #}        
