@@ -29,7 +29,7 @@ class __TwigTemplate_c2decda1219556474b6913a12cbee8e7 extends Twig_Template
     public function block_title($context, array $blocks = array())
     {
         // line 6
-        echo "Liste des anomalies - ";
+        echo "Création anomalie - ";
         $this->displayParentBlock("title", $context, $blocks);
         echo "
 ";
@@ -94,8 +94,8 @@ class __TwigTemplate_c2decda1219556474b6913a12cbee8e7 extends Twig_Template
         // line 33
         echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "createur"));
         echo "
-            </div>
-            <div>
+        </div>
+        <div>
         ";
         // line 36
         echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, "form"), "projet"), "Version");
@@ -108,25 +108,22 @@ class __TwigTemplate_c2decda1219556474b6913a12cbee8e7 extends Twig_Template
         // line 38
         echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, "form"), "projet"));
         echo "
-                </div>   
-                <!-- Génération des champs pas encore écrits-->
+        </div>   
+        <!-- Génération des champs pas encore écrits-->
         ";
         // line 41
         echo $this->env->getExtension('form')->renderRest($this->getContext($context, "form"));
         echo "   
-                <div>
-                    <input type=\"submit\" />
-                </div>
-
-            </form>
-            <p><a href=\"";
+        <div>
+           <input type=\"submit\" />
+        </div>
+    </form>
+        ";
         // line 47
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("myapp_anomalie_lister"), "html", null, true);
-        echo "\">Retour à la liste des anomalies</a></p>
-        </ul>
+        echo "        </ul>
             
 ";
-        // line 50
+        // line 49
         echo "        
 ";
     }
@@ -143,6 +140,6 @@ class __TwigTemplate_c2decda1219556474b6913a12cbee8e7 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  128 => 50,  122 => 47,  113 => 41,  107 => 38,  103 => 37,  99 => 36,  93 => 33,  89 => 32,  85 => 31,  78 => 27,  73 => 25,  68 => 23,  62 => 20,  57 => 18,  53 => 16,  47 => 14,  45 => 13,  40 => 10,  37 => 9,  30 => 6,  27 => 5,);
+        return array (  125 => 49,  121 => 47,  113 => 41,  107 => 38,  103 => 37,  99 => 36,  93 => 33,  89 => 32,  85 => 31,  78 => 27,  73 => 25,  68 => 23,  62 => 20,  57 => 18,  53 => 16,  47 => 14,  45 => 13,  40 => 10,  37 => 9,  30 => 6,  27 => 5,);
     }
 }

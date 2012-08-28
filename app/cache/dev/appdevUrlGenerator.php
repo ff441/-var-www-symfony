@@ -35,8 +35,8 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_final' => true,
        'myapp_accueil' => true,
        'myapp_anomalie_lister' => true,
+       'myapp_anomalie_detail' => true,
        'myapp_anomalie_creer' => true,
-       'myapp_anomalie_modifier' => true,
        'myapp_anomalie_supprimer' => true,
     );
 
@@ -171,14 +171,14 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::listerAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/myapp/anomalie/',  ),));
     }
 
+    private function getmyapp_anomalie_detailRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::detailAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/myapp/anomalie',  ),));
+    }
+
     private function getmyapp_anomalie_creerRouteInfo()
     {
         return array(array (), array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::creerAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/myapp/anomalie/creer',  ),));
-    }
-
-    private function getmyapp_anomalie_modifierRouteInfo()
-    {
-        return array(array (  0 => 'id',), array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::modifierAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/myapp/anomalie/modifier',  ),));
     }
 
     private function getmyapp_anomalie_supprimerRouteInfo()

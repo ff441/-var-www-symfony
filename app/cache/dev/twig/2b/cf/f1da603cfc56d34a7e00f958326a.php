@@ -53,15 +53,11 @@ class __TwigTemplate_2bcff1da603cfc56d34a7e00f958326a extends Twig_Template
 \t\t\t\t<div id=\"menu\" class=\"span3\">
 \t\t\t\t\t<h3>Menu</h3>
 \t\t\t\t\t<ul class=\"nav nav-pills nav-stacked\">
-\t\t\t\t\t\t<li><a href=\"";
-        // line 29
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("myapp_anomalie_lister"), "html", null, true);
-        echo "\">Recherche Anomalie</a></li>
-\t\t\t\t\t\t<li><a href=\"";
-        // line 30
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("myapp_anomalie_creer"), "html", null, true);
-        echo "\">Ajouter une Anomalie</a></li>
 \t\t\t\t\t\t";
+        // line 30
+        echo "\t\t\t\t\t\t";
+        // line 31
+        echo "\t\t\t\t\t\t";
         // line 32
         echo "\t\t\t\t\t</ul>\t\t\t\t
 \t\t\t\t</div>
@@ -148,13 +144,8 @@ class __TwigTemplate_2bcff1da603cfc56d34a7e00f958326a extends Twig_Template
         return "::layout.html.twig";
     }
 
-    public function isTraitable()
-    {
-        return false;
-    }
-
     public function getDebugInfo()
     {
-        return array (  129 => 52,  126 => 51,  124 => 50,  121 => 49,  114 => 35,  107 => 11,  104 => 10,  98 => 8,  87 => 64,  85 => 49,  71 => 37,  69 => 35,  64 => 32,  60 => 30,  56 => 29,  38 => 13,  36 => 10,  31 => 8,  23 => 2,  21 => 1,);
+        return array (  125 => 52,  122 => 51,  120 => 50,  117 => 49,  110 => 35,  103 => 11,  100 => 10,  94 => 8,  83 => 64,  81 => 49,  67 => 37,  65 => 35,  60 => 32,  58 => 31,  56 => 30,  38 => 13,  36 => 10,  31 => 8,  23 => 2,  21 => 1,);
     }
 }

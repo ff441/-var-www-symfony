@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use MyApp\GdaBundle\Entity\Anomalie;
 use MyApp\GdaBundle\Form\AnomalieForm;
+use MyApp\GdaBundle\Form\DetailAnomalieForm;
 
 class AnomalieController extends Controller {
     
@@ -24,8 +25,14 @@ class AnomalieController extends Controller {
      *    Utilisation de QueryBuilder Object
      * 	  http://docs.doctrine-project.org/projects/doctrine-orm/en/2.1/reference/query-builder.html
      */
-    public function listerAction($id) {
+    public function listerAction($id = null) {
         //TODO : Ajouter la requête avec le filtre de l'état
+        $message = '';
+        $anomalie = new Anomalie();
+        $form = $this->container->get('form.factory')->create(new DetailAnomalieForm(), $anomalie);
+        
+                
+        $em = $this->container->get('doctrine')->getEntityManager();
         $repository = $this->getDoctrine()->getRepository('MyAppGdaBundle:Anomalie');
         $anomalies = $repository->findAll();
         //Requête pour récupérer les anomalies non terminées
@@ -70,8 +77,11 @@ class AnomalieController extends Controller {
         
         
         
-        return $this->container->get('templating')->renderResponse('MyAppGdaBundle:Anomalie:lister.html.twig', array(
-                    'anomalies' => $anomalies
+        return $this->container->get('templating')->renderResponse(
+                        'MyAppGdaBundle:Anomalie:lister.html.twig', array(
+                    'form' => $form->createView(),
+                    'message' => $message,
+                    'anomalies' => $anomalies,
                 ));
     }
 
@@ -79,7 +89,7 @@ class AnomalieController extends Controller {
      * Créer une anomalie     
      */
      // TODO à supprimer le bloc creer
-    /*public function creerAction() {
+    public function creerAction() {
         $message = '';
         $anomalie = new Anomalie();
         $form = $this->container->get('form.factory')->create(new AnomalieForm(), $anomalie);
@@ -102,9 +112,9 @@ class AnomalieController extends Controller {
                     'form' => $form->createView(),
                     'message' => $message,
                 ));
-    }*/
+    }
 
-    public function anomalieAction($id) {       
+    public function detailAction($id = null) {       
         
         $message='';
 	$em = $this->container->get('doctrine')->getEntityManager();

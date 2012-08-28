@@ -13,7 +13,7 @@ namespace MyApp\GdaBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class AnomalieForm extends AbstractType
+class DetailAnomalieForm extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {        
@@ -27,9 +27,9 @@ class AnomalieForm extends AbstractType
                                                 ))
             ->add('createur', 'entity', array(
                 'class'=>'MyAppGdaBundle:Utilisateur'))
-            ->add('$proprietaire', 'entity', array(
+            ->add('proprietaire', 'entity', array(
                 'class'=>'MyAppGdaBundle:Utilisateur'))
-            ->add('$solveur', 'entity', array(
+            ->add('solveur', 'entity', array(
                 'class'=>'MyAppGdaBundle:Utilisateur'))    
             ->add('projet', 'entity', array(
                 'class'=>'MyAppGdaBundle:Projet'))
@@ -44,7 +44,7 @@ class AnomalieForm extends AbstractType
     
     public function getName()
     {
-        return 'anomalieForm';        
+        return 'detailAnomalieForm';        
     }
 }
 ?>

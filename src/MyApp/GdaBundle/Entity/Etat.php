@@ -53,4 +53,11 @@ class Etat
     {
         return $this->etat;
     }
+    
+    
+    public function __toString() {
+        return $this->etat;
+    }
+    
+    
 }

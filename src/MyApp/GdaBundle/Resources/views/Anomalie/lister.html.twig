@@ -14,8 +14,9 @@ Liste des anomalies - {{ parent() }}
 		<td>{{ a.id }}</td>
 		<td>{{ a.projet }}</td>
 		<td>{{ a.dateCreation|date('d/m/Y') }}</td>
-		<td>{{ a.etat.getEtat() }}</td>
-		<td><a href="{{ path('myapp_anomalie_creer', { 'id': a.id }) }}">Détail</a></td>		
+		<td>{{ a.etat }}</td>
+		<td><a href="{{ path('myapp_anomalie_detail', { 'id': a.id }) }}">Détail</a></td>
+                <td><a href="{{ path('myapp_anomalie_supprimer', { 'id': a.id }) }}">Supprimer</a></td>
 	</tr>
 {% else %}
 	<tr><td>Aucune anomalie en-cours</td></tr>
@@ -25,7 +26,7 @@ Liste des anomalies - {{ parent() }}
 {# ------------------------------------------- #}
 {#       Detail de l'anomalie sélectionnée     #}
 {# ------------------------------------------- #}
-<ul>
+ <ul>
     <form action="" method="post" {{ form_enctype(form) }}>    
         <!-- Les erreurs générales du formulaire. -->
     {{ form_errors(form) }}

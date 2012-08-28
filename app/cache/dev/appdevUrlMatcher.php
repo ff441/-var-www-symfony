@@ -160,14 +160,14 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::listerAction',  '_route' => 'myapp_anomalie_lister',);
             }
 
+            // myapp_anomalie_detail
+            if (0 === strpos($pathinfo, '/myapp/anomalie') && preg_match('#^/myapp/anomalie/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::detailAction',)), array('_route' => 'myapp_anomalie_detail'));
+            }
+
             // myapp_anomalie_creer
             if ($pathinfo === '/myapp/anomalie/creer') {
                 return array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::creerAction',  '_route' => 'myapp_anomalie_creer',);
-            }
-
-            // myapp_anomalie_modifier
-            if (0 === strpos($pathinfo, '/myapp/anomalie/modifier') && preg_match('#^/myapp/anomalie/modifier/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::modifierAction',)), array('_route' => 'myapp_anomalie_modifier'));
             }
 
             // myapp_anomalie_supprimer
