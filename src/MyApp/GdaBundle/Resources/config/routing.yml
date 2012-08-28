@@ -1,9 +1,17 @@
+#--------------------------------
+# Header
+#--------------------------------
+# 28/08/2012
+# Ajout des routes de FOSUserBundle
+#--------------------------------
+
+
 myapp_accueil:
   pattern: /
   defaults: { _controller: MyAppGdaBundle:Default:index }    
 myapp_anomalie_lister:
   pattern: /anomalie/{id}
-  defaults: { _controller: MyAppGdaBundle:Anomalie:lister }
+  defaults: { _controller: MyAppGdaBundle:Anomalie:lister ,format: 0 }
 myapp_anomalie_creer:
   pattern: /anomalie/creer
   defaults: { _controller: MyAppGdaBundle:Anomalie:anomalie }
@@ -13,3 +21,25 @@ myapp_anomalie_modifier:
 myapp_anomalie_supprimer:
   pattern: /anomalie/supprimer/{id}
   defaults: { _controller: MyAppGdaBundle:Anomalie:supprimer }
+
+#--------------------------------
+# Partie Gestion des utilisateurs
+#--------------------------------
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /change-password
