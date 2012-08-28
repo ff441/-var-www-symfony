@@ -1,10 +1,17 @@
+#
+# Header
+#--------------
+# 28/08/2012
+# Ajout du FosUserBundle
+#
+
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     charset:         UTF-8
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
@@ -58,3 +65,25 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+
+fos_user:
+    db_driver:     orm                        
+    firewall_name: main                       
+    user_class:    MyApp\UserBundle\Entity\User 
+    
+    # Permet de renseigner le nouveau formulaire d'inscription
+    registration:
+    form:
+        type: myapp_user_registration
+        
+    confirmation:
+        enabled:    true
+        from_email:
+            # Adresse de l'expediteur
+            address:        noreply@monsiteweb.com
+            # Nom de l'expediteur
+            sender_name:    Admin de monsiteweb.com
+    # Permet de définir le template de l'email à envoyer (en html)
+    email:
+        template: MyAppUserBundle:Mail:registration.email.twig

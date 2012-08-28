@@ -1,0 +1,9 @@
+#   HEADER 
+#-------------------------------------------
+#  28/08/2012
+#  Creation du fichier de traduction FosUser
+#--------------------------------------------
+
+# src/MyApp/UserBundle/Resources/translations/MyAppUserBundle.fr.yml
+
+"Bad credentials": "Pseudo ou mot de passe incorrect"
