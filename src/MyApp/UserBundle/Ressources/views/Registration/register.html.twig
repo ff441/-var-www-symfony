@@ -1,0 +1,15 @@
+{# -----------------------------------------#}
+{#                  header                  #}
+{# -----------------------------------------#}
+{#               28/08/2012                 #}
+{#  Creation de la page d'identification    #}
+{# -----------------------------------------#}
+
+
+{#src/MyApp/UserBundle/Resources/views/Registration/register.html.twig #}
+
+{% extends "MyAppUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+{% include "MyAppUserBundle:Registration:register_content.html.twig" %}
+{% endblock fos_user_content %}
