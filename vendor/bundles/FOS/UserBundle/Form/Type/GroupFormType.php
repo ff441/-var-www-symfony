@@ -12,8 +12,7 @@
 namespace FOS\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormBuilder;
 
 class GroupFormType extends AbstractType
 {
@@ -27,17 +26,17 @@ class GroupFormType extends AbstractType
         $this->class = $class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('name', null, array('label' => 'form.group_name', 'translation_domain' => 'FOSUserBundle'));
+        $builder->add('name');
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function getDefaultOptions(array $options)
     {
-        $resolver->setDefaults(array(
+        return array(
             'data_class' => $this->class,
             'intention'  => 'group',
-        ));
+        );
     }
 
     public function getName()

@@ -20,4 +20,4 @@ class MyAppUserBundle extends Bundle
 }
 
 
-?>
+

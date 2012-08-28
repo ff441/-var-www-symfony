@@ -25,14 +25,15 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected $id;   
 
-    public function equals(\Symfony\Component\Security\Core\User\UserInterface $user) {
-        //TODO : A définir la méthode equals
-        return true;
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
-
-
-
-?>

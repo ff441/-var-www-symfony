@@ -45,7 +45,7 @@ Or if you prefer XML:
 
 ### The Group class
 
-The simplest way to create a Group class is to extend the mapped superclass
+The simpliest way to create a Group class is to extend the mapped superclass
 provided by the bundle.
 
 **a) ORM Group class implementation**

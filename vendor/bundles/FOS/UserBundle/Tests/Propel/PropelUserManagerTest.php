@@ -130,7 +130,11 @@ class PropelUserManagerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        if (!class_exists('Propel')) {
+        if (file_exists($file = __DIR__.'/../../../../../propel/runtime/lib/Propel.php')) {
+            require_once $file;
+        }
+
+        if (!class_exists('\Propel')) {
             $this->markTestSkipped('Propel not installed');
         }
 

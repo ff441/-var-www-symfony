@@ -4,7 +4,7 @@ namespace FOS\UserBundle\Form\Type;
 
 use FOS\UserBundle\Form\DataTransformer\UserToUsernameTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormBuilder;
 
 /**
  * Form type for representing a UserInterface instance by its username string.
@@ -31,15 +31,17 @@ class UsernameFormType extends AbstractType
     /**
      * @see Symfony\Component\Form\AbstractType::buildForm()
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->addModelTransformer($this->usernameTransformer);
+        parent::buildForm($builder, $options);
+
+        $builder->prependClientTransformer($this->usernameTransformer);
     }
 
     /**
      * @see Symfony\Component\Form\AbstractType::getParent()
      */
-    public function getParent()
+    public function getParent(array $options)
     {
         return 'text';
     }

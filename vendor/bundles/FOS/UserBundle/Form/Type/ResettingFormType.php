@@ -12,27 +12,21 @@
 namespace FOS\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormBuilder;
 
 class ResettingFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('new', 'repeated', array(
-            'type' => 'password',
-            'options' => array('translation_domain' => 'FOSUserBundle'),
-            'first_options' => array('label' => 'form.new_password'),
-            'second_options' => array('label' => 'form.new_password_confirmation'),
-        ));
+        $builder->add('new', 'repeated', array('type' => 'password'));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function getDefaultOptions(array $options)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'FOS\UserBundle\Form\Model\ChangePassword',
+        return array(
+            'data_class' => 'FOS\UserBundle\Form\Model\ResetPassword',
             'intention'  => 'resetting',
-        ));
+        );
     }
 
     public function getName()

@@ -11,6 +11,8 @@
 
 namespace FOS\UserBundle\Model;
 
+use Symfony\Component\Validator\Constraint;
+
 /**
  * Interface to be implemented by user managers. This adds an additional level
  * of abstraction between your application, and the actual repository.
@@ -31,99 +33,103 @@ interface UserManagerInterface
      *
      * @return UserInterface
      */
-    public function createUser();
+    function createUser();
 
     /**
      * Deletes a user.
      *
      * @param UserInterface $user
      */
-    public function deleteUser(UserInterface $user);
+    function deleteUser(UserInterface $user);
 
     /**
      * Finds one user by the given criteria.
      *
      * @param array $criteria
-     *
      * @return UserInterface
      */
-    public function findUserBy(array $criteria);
+    function findUserBy(array $criteria);
 
     /**
      * Find a user by its username.
      *
-     * @param string $username
-     *
+     * @param string  $username
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByUsername($username);
+    function findUserByUsername($username);
 
     /**
      * Finds a user by its email.
      *
-     * @param string $email
-     *
+     * @param string  $email
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByEmail($email);
+    function findUserByEmail($email);
 
     /**
      * Finds a user by its username or email.
      *
-     * @param string $usernameOrEmail
-     *
+     * @param string  $usernameOrEmail
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByUsernameOrEmail($usernameOrEmail);
+    function findUserByUsernameOrEmail($usernameOrEmail);
 
     /**
      * Finds a user by its confirmationToken.
      *
-     * @param string $token
-     *
+     * @param string  $token
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByConfirmationToken($token);
+    function findUserByConfirmationToken($token);
 
     /**
      * Returns a collection with all user instances.
      *
      * @return \Traversable
      */
-    public function findUsers();
+    function findUsers();
 
     /**
      * Returns the user's fully qualified class name.
      *
      * @return string
      */
-    public function getClass();
+    function getClass();
 
     /**
      * Reloads a user.
      *
      * @param UserInterface $user
      */
-    public function reloadUser(UserInterface $user);
+    function reloadUser(UserInterface $user);
 
     /**
      * Updates a user.
      *
      * @param UserInterface $user
      */
-    public function updateUser(UserInterface $user);
+    function updateUser(UserInterface $user);
 
     /**
      * Updates the canonical username and email fields for a user.
      *
      * @param UserInterface $user
      */
-    public function updateCanonicalFields(UserInterface $user);
+    function updateCanonicalFields(UserInterface $user);
 
     /**
      * Updates a user password if a plain password is set.
      *
      * @param UserInterface $user
      */
-    public function updatePassword(UserInterface $user);
+    function updatePassword(UserInterface $user);
+
+    /**
+     * Checks the uniqueness of the given fields, returns true if its unique.
+     *
+     * @param UserInterface $value
+     * @param Constraint    $constraint
+     * @return Boolean
+     */
+    function validateUnique(UserInterface $value, Constraint $constraint);
 }

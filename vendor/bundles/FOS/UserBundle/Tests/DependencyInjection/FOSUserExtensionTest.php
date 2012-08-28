@@ -96,7 +96,6 @@ class FOSUserExtensionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotHasDefinition('fos_user.user_manager.default');
         $this->assertAlias('acme.user_manager', 'fos_user.user_manager');
-        $this->assertParameter('custom', 'fos_user.storage');
     }
 
     public function testDisableRegistration()
@@ -157,7 +156,6 @@ class FOSUserExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->createEmptyConfiguration();
 
-        $this->assertParameter('mongodb', 'fos_user.storage');
         $this->assertParameter(null, 'fos_user.model_manager_name');
         $this->assertAlias('fos_user.user_manager.default', 'fos_user.user_manager');
         $this->assertNotHasDefinition('fos_user.group_manager');
@@ -167,7 +165,6 @@ class FOSUserExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->createFullConfiguration();
 
-        $this->assertParameter('orm', 'fos_user.storage');
         $this->assertParameter('custom', 'fos_user.model_manager_name');
         $this->assertAlias('acme_my.user_manager', 'fos_user.user_manager');
         $this->assertAlias('fos_user.group_manager.default', 'fos_user.group_manager');
@@ -266,6 +263,7 @@ class FOSUserExtensionTest extends \PHPUnit_Framework_TestCase
         $this->createEmptyConfiguration();
 
         $this->assertParameter('twig', 'fos_user.template.engine');
+        $this->assertParameter('FOSUserBundle::form.html.twig', 'fos_user.template.theme');
     }
 
     public function testUserLoadTemplateConfig()
@@ -273,6 +271,7 @@ class FOSUserExtensionTest extends \PHPUnit_Framework_TestCase
         $this->createFullConfiguration();
 
         $this->assertParameter('php', 'fos_user.template.engine');
+        $this->assertParameter('AcmeMyBundle:Form:theme.html.twig', 'fos_user.template.theme');
     }
 
     public function testUserLoadUtilServiceWithDefaults()
@@ -388,6 +387,7 @@ service:
     user_manager: acme_my.user_manager
 template:
     engine: php
+    theme: AcmeMyBundle:Form:theme.html.twig
 group:
     group_class: Acme\MyBundle\Entity\Group
     form:

@@ -8,8 +8,11 @@
 
 myapp_accueil:
   pattern: /
-  defaults: { _controller: MyAppGdaBundle:Default:index } 
+  defaults: { _controller: MyAppGdaBundle:Default:index }
 myapp_anomalie_lister:
+  pattern: /anomalie/
+  defaults: { _controller: MyAppGdaBundle:Anomalie:lister  }
+myapp_anomalie_detail:
   pattern: /anomalie/{id}
   defaults: { _controller: MyAppGdaBundle:Anomalie:lister ,format: 0 }
 myapp_anomalie_creer:

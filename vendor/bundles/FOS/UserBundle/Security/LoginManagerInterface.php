@@ -16,5 +16,5 @@ use Symfony\Component\HttpFoundation\Response;
 
 interface LoginManagerInterface
 {
-    public function loginUser($firewallName, UserInterface $user, Response $response = null);
+	function loginUser($firewallName, UserInterface $user, Response $response = null);
 }

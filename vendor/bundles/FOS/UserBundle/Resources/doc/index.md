@@ -11,9 +11,6 @@ a database, then you're in the right place.
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.1. If you are using Symfony
-2.0.x, please use the 1.2.0 release of the bundle.
-
 ### Translations
 
 If you wish to use default texts provided in this bundle, you have to make
@@ -26,43 +23,72 @@ framework:
     translator: ~
 ```
 
-For more information about translations, check [Symfony documentation](http://symfony.com/doc/current/book/translation.html).
+For more information about translations, check [Symfony documentation](http://symfony.com/doc/2.0/book/translation.html).
 
 ## Installation
 
-Installation is a quick (I promise!) 7 step process:
+Installation is a quick (I promise!) 8 step process:
 
-1. Download FOSUserBundle using composer
-2. Enable the Bundle
-3. Create your User class
-4. Configure your application's security.yml
-5. Configure the FOSUserBundle
-6. Import FOSUserBundle routing
-7. Update your database schema
+1. Download FOSUserBundle
+2. Configure the Autoloader
+3. Enable the Bundle
+4. Create your User class
+5. Configure your application's security.yml
+6. Configure the FOSUserBundle
+7. Import FOSUserBundle routing
+8. Update your database schema
 
-### Step 1: Download FOSUserBundle using composer
+### Step 1: Download FOSUserBundle
 
-Add FOSUserBundle in your composer.json:
+Ultimately, the FOSUserBundle files should be downloaded to the
+`vendor/bundles/FOS/UserBundle` directory.
 
-```js
-{
-    "require": {
-        "friendsofsymfony/user-bundle": "*"
-    }
-}
+This can be done in several ways, depending on your preference. The first
+method is the standard Symfony2 method.
+
+**Using the vendors script**
+
+Add the following lines in your `deps` file:
+
+``` ini
+[FOSUserBundle]
+    git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
+    target=bundles/FOS/UserBundle
+    version=1.2.0
 ```
 
-Now tell composer to download the bundle by running the command:
+Now, run the vendors script to download the bundle:
 
 ``` bash
-$ php composer.phar update friendsofsymfony/user-bundle
+$ php bin/vendors install
 ```
 
-Composer will install the bundle to your project's `vendor/friendsofsymfony` directory.
+**Using submodules**
 
-### Step 2: Enable the bundle
+If you prefer instead to use git submodules, then run the following:
 
-Enable the bundle in the kernel:
+``` bash
+$ git submodule add git://github.com/FriendsOfSymfony/FOSUserBundle.git vendor/bundles/FOS/UserBundle
+$ git submodule update --init
+```
+
+### Step 2: Configure the Autoloader
+
+Add the `FOS` namespace to your autoloader:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    // ...
+    'FOS' => __DIR__.'/../vendor/bundles',
+));
+```
+
+### Step 3: Enable the bundle
+
+Finally, enable the bundle in the kernel:
 
 ``` php
 <?php
@@ -77,7 +103,7 @@ public function registerBundles()
 }
 ```
 
-### Step 3: Create your User class
+### Step 4: Create your User class
 
 The goal of this bundle is to persist some `User` class to a database (MySql,
 MongoDB, CouchDB, etc). Your first job, then, is to create the `User` class
@@ -217,15 +243,22 @@ class User extends BaseUser
 
 **d) Propel User class**
 
+When using Propel, the `FOS\UserBundle\Model\UserInterface` is implemented
+by a proxy object.
 If you don't want to add your own logic in your user class, you can simply use
-`FOS\UserBundle\Propel\User` as user class and you don't have to create
+`FOS\UserBundle\Propel\UserProxy` as proxy user class and `FOS\UserBundle\Propel\User`
+as model class in your configuration (see step 6) and you don't have to create
 another class.
 
 If you want to add your own fields, you can extend the model class by overriding the database schema.
 Just copy the `Resources/config/propel/schema.xml` file to `app/Resources/FOSUserBundle/config/propel/schema.xml`,
 and customize it to fit your needs.
+Due to an issue with the Form component that does not support using `__call` to
+access properties, you will have to extend the proxy class as well to support these fields. For instance, if you've
+added a `website_url` attribute to the overrided schema, you'll need to declare both `getWebsiteUrl()` and
+`setWebsiteUrl()` methods in your own proxy class (just forward methods to the `user` attribute).
 
-### Step 4: Configure your application's security.yml
+### Step 5: Configure your application's security.yml
 
 In order for Symfony's security component to use the FOSUserBundle, you must
 tell it to do so in the `security.yml` file. The `security.yml` file is where the
@@ -239,10 +272,10 @@ in your application:
 security:
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_manager
 
     encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
+        "FOS\UserBundle\Model\UserInterface": sha512
 
     firewalls:
         main:
@@ -266,7 +299,7 @@ security:
 
 Under the `providers` section, you are making the bundle's packaged user provider
 service available via the alias `fos_userbundle`. The id of the bundle's user
-provider service is `fos_user.user_provider.username`.
+provider service is `fos_user.user_manager`.
 
 Next, take a look at examine the `firewalls` section. Here we have declared a
 firewall named `main`. By specifying `form_login`, you have told the Symfony2
@@ -302,7 +335,7 @@ security component [documentation](http://symfony.com/doc/current/book/security.
 > the FOSUserBundle is configured in. You will use this in the next step when you
 > configure the FOSUserBundle.
 
-### Step 5: Configure the FOSUserBundle
+### Step 6: Configure the FOSUserBundle
 
 Now that you have properly configured your application's `security.yml` to work
 with the FOSUserBundle, the next step is to configure the bundle to work with
@@ -339,6 +372,12 @@ Only three configuration values are required to use the bundle:
 * The firewall name which you configured in Step 5.
 * The fully qualified class name (FQCN) of the `User` class which you created in Step 4.
 
+**Note:**
+
+> When using Propel, the `user_class` key refers to the proxy class implementing
+> the FOSUserBundle interface. Thus, a fourth key named `propel_user_class`
+> is also required, refering to the actual model class.
+
 **Warning:**
 
 > When using one of the Doctrine implementation, you need either to use the
@@ -346,7 +385,7 @@ Only three configuration values are required to use the bundle:
 > DoctrineBundle in the standard distribution) or to activate the mapping
 > for FOSUserBundle otherwise the base mapping will be ignored.
 
-### Step 6: Import FOSUserBundle routing files
+### Step 7: Import FOSUserBundle routing files
 
 Now that you have activated and configured the bundle, all that is left to do is
 import the FOSUserBundle routing files.
@@ -394,7 +433,7 @@ Or if you prefer XML:
 > In order to use the built-in email functionality (confirmation of the account,
 > resetting of the password), you must activate and configure the SwiftmailerBundle.
 
-### Step 7: Update your database schema
+### Step 8: Update your database schema
 
 Now that the bundle is configured, the last thing you need to do is update your
 database schema because you have added a new entity, the `User` class which you
@@ -415,22 +454,35 @@ $ php app/console doctrine:mongodb:schema:create --index
 For Propel users you have to install the [TypehintableBehavior](https://github.com/willdurand/TypehintableBehavior) before to
 build your model. First, install it:
 
-```json
-{
-    "require": {
-        "willdurand/propel-typehintable-behavior": "*"
-    }
-}
+By using Git submodules:
+
+``` bash
+$ git submodule add http://github.com/willdurand/TypehintableBehavior.git vendor/propel-behaviors/TypehintableBehavior
+```
+
+By using the Symfony2 vendor management:
+
+``` ini
+[TypehintableBehavior]
+    git=http://github.com/willdurand/TypehintableBehavior.git
+    target=/propel-behaviors/TypehintableBehavior
+```
+
+Then, register it:
+
+``` ini
+# app/config/propel.ini
+propel.behavior.typehintable.class = vendor.propel-behaviors.TypehintableBehavior.src.TypehintableBehavior
 ```
 
 You now can run the following command to create the model:
 
 ``` bash
-$ php app/console propel:build
+$ php app/console propel:build-model
 ```
 
-> To create SQL, run the command `propel:build --insert-sql` or use migration
-> commands if you have an existing schema in your database.
+> To create SQL, run the command `propel:build-sql` and insert it or use migration commands if you have an existing schema in your database.
+
 
 You now can login at `http://app.com/app_dev.php/login`!
 
@@ -456,4 +508,3 @@ The following documents are available:
 - [Replacing the canonicalizer](canonicalizer.md)
 - [Using a custom storage layer](custom_storage_layer.md)
 - [Configuration Reference](configuration_reference.md)
-- [Adding invitations to registration](adding_invitation_registration.md)

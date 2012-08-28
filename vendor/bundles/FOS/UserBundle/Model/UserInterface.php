@@ -19,85 +19,82 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  */
 interface UserInterface extends AdvancedUserInterface, \Serializable
 {
-    const ROLE_DEFAULT = 'ROLE_USER';
-    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
-
     /**
      * Sets the username.
      *
      * @param string $username
      */
-    public function setUsername($username);
+    function setUsername($username);
 
     /**
      * Gets the canonical username in search and sort queries.
      *
      * @return string
      */
-    public function getUsernameCanonical();
+    function getUsernameCanonical();
 
     /**
      * Sets the canonical username.
      *
      * @param string $usernameCanonical
      */
-    public function setUsernameCanonical($usernameCanonical);
+    function setUsernameCanonical($usernameCanonical);
 
     /**
      * Gets email.
      *
      * @return string
      */
-    public function getEmail();
+    function getEmail();
 
     /**
      * Sets the email.
      *
      * @param string $email
      */
-    public function setEmail($email);
+    function setEmail($email);
 
     /**
      * Gets the canonical email in search and sort queries.
      *
      * @return string
      */
-    public function getEmailCanonical();
+    function getEmailCanonical();
 
     /**
      * Set the canonical email.
      *
      * @param string $emailCanonical
      */
-    public function setEmailCanonical($emailCanonical);
+    function setEmailCanonical($emailCanonical);
 
     /**
      * Gets the plain password.
      *
      * @return string
      */
-    public function getPlainPassword();
+    function getPlainPassword();
 
     /**
      * Sets the plain password.
      *
      * @param string $password
      */
-    public function setPlainPassword($password);
+    function setPlainPassword($password);
 
     /**
      * Sets the hashed password.
      *
      * @param string $password
      */
-    public function setPassword($password);
+    function setPassword($password);
 
     /**
      * Tells if the the given user has the super admin role.
      *
      * @return Boolean
      */
-    public function isSuperAdmin();
+    function isSuperAdmin();
 
     /**
      * Tells if the the given user is this user.
@@ -105,66 +102,69 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
      * Useful when not hydrating all fields.
      *
      * @param UserInterface $user
-     *
      * @return Boolean
      */
-    public function isUser(UserInterface $user = null);
+    function isUser(UserInterface $user = null);
 
     /**
      * @param Boolean $boolean
      */
-    public function setEnabled($boolean);
+    function setEnabled($boolean);
 
     /**
      * Sets the locking status of the user.
      *
      * @param Boolean $boolean
      */
-    public function setLocked($boolean);
+    function setLocked($boolean);
 
     /**
      * Sets the super admin status
      *
      * @param Boolean $boolean
      */
-    public function setSuperAdmin($boolean);
+    function setSuperAdmin($boolean);
+
+    /**
+     * Generates the confirmation token if it is not set.
+     */
+    function generateConfirmationToken();
 
     /**
      * Gets the confirmation token.
      *
      * @return string
      */
-    public function getConfirmationToken();
+    function getConfirmationToken();
 
     /**
      * Sets the confirmation token
      *
      * @param string $confirmationToken
      */
-    public function setConfirmationToken($confirmationToken);
+    function setConfirmationToken($confirmationToken);
 
     /**
      * Sets the timestamp that the user requested a password reset.
      *
      * @param \DateTime $date
      */
-    public function setPasswordRequestedAt(\DateTime $date = null);
+    function setPasswordRequestedAt(\DateTime $date = null);
 
     /**
      * Checks whether the password reset request has expired.
      *
      * @param integer $ttl Requests older than this many seconds will be considered expired
-     *
      * @return Boolean true if the user's password request is non expired, false otherwise
      */
-    public function isPasswordRequestNonExpired($ttl);
+    function isPasswordRequestNonExpired($ttl);
 
     /**
      * Sets the last login time
      *
      * @param \DateTime $time
      */
-    public function setLastLogin(\DateTime $time);
+    function setLastLogin(\DateTime $time);
 
     /**
      * Never use this to check if this user has access to anything!
@@ -175,10 +175,9 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
      *         $securityContext->isGranted('ROLE_USER');
      *
      * @param string $role
-     *
      * @return Boolean
      */
-    public function hasRole($role);
+    function hasRole($role);
 
     /**
      * Sets the roles of the user.
@@ -187,19 +186,19 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
      *
      * @param array $roles
      */
-    public function setRoles(array $roles);
+    function setRoles(array $roles);
 
     /**
      * Adds a role to the user.
      *
      * @param string $role
      */
-    public function addRole($role);
+    function addRole($role);
 
     /**
      * Removes a role to the user.
      *
      * @param string $role
      */
-    public function removeRole($role);
+    function removeRole($role);
 }

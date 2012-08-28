@@ -38,6 +38,20 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        'myapp_anomalie_detail' => true,
        'myapp_anomalie_creer' => true,
        'myapp_anomalie_supprimer' => true,
+       'fos_user_security_login' => true,
+       'fos_user_security_check' => true,
+       'fos_user_security_logout' => true,
+       'fos_user_profile_show' => true,
+       'fos_user_profile_edit' => true,
+       'fos_user_registration_register' => true,
+       'fos_user_registration_check_email' => true,
+       'fos_user_registration_confirm' => true,
+       'fos_user_registration_confirmed' => true,
+       'fos_user_resetting_request' => true,
+       'fos_user_resetting_send_email' => true,
+       'fos_user_resetting_check_email' => true,
+       'fos_user_resetting_reset' => true,
+       'fos_user_change_password' => true,
     );
 
     /**
@@ -173,7 +187,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getmyapp_anomalie_detailRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::detailAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/myapp/anomalie',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::listerAction',  'format' => 0,), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/myapp/anomalie',  ),));
     }
 
     private function getmyapp_anomalie_creerRouteInfo()
@@ -184,5 +198,75 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getmyapp_anomalie_supprimerRouteInfo()
     {
         return array(array (  0 => 'id',), array (  '_controller' => 'MyApp\\GdaBundle\\Controller\\AnomalieController::supprimerAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/myapp/anomalie/supprimer',  ),));
+    }
+
+    private function getfos_user_security_loginRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::loginAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/myapp/login',  ),));
+    }
+
+    private function getfos_user_security_checkRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::checkAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/myapp/login_check',  ),));
+    }
+
+    private function getfos_user_security_logoutRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::logoutAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/myapp/logout',  ),));
+    }
+
+    private function getfos_user_profile_showRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ProfileController::showAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/myapp/profile/',  ),));
+    }
+
+    private function getfos_user_profile_editRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ProfileController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/myapp/profile/edit',  ),));
+    }
+
+    private function getfos_user_registration_registerRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::registerAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/myapp/register/',  ),));
+    }
+
+    private function getfos_user_registration_check_emailRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::checkEmailAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/myapp/register/check-email',  ),));
+    }
+
+    private function getfos_user_registration_confirmRouteInfo()
+    {
+        return array(array (  0 => 'token',), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::confirmAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'token',  ),  1 =>   array (    0 => 'text',    1 => '/myapp/register/confirm',  ),));
+    }
+
+    private function getfos_user_registration_confirmedRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::confirmedAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/myapp/register/confirmed',  ),));
+    }
+
+    private function getfos_user_resetting_requestRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::requestAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/myapp/resetting/request',  ),));
+    }
+
+    private function getfos_user_resetting_send_emailRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::sendEmailAction',), array (  '_method' => 'POST',), array (  0 =>   array (    0 => 'text',    1 => '/myapp/resetting/send-email',  ),));
+    }
+
+    private function getfos_user_resetting_check_emailRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::checkEmailAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/myapp/resetting/check-email',  ),));
+    }
+
+    private function getfos_user_resetting_resetRouteInfo()
+    {
+        return array(array (  0 => 'token',), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::resetAction',), array (  '_method' => 'GET|POST',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'token',  ),  1 =>   array (    0 => 'text',    1 => '/myapp/resetting/reset',  ),));
+    }
+
+    private function getfos_user_change_passwordRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ChangePasswordController::changePasswordAction',), array (  '_method' => 'GET|POST',), array (  0 =>   array (    0 => 'text',    1 => '/myapp/change-password/change-password',  ),));
     }
 }

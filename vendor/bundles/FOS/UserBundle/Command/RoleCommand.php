@@ -16,6 +16,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use FOS\UserBundle\Model\User;
 use FOS\UserBundle\Util\UserManipulator;
 
 /**
@@ -71,7 +73,8 @@ abstract class RoleCommand extends ContainerAwareCommand
             $username = $this->getHelper('dialog')->askAndValidate(
                 $output,
                 'Please choose a username:',
-                function($username) {
+                function($username)
+                {
                     if (empty($username)) {
                         throw new \Exception('Username can not be empty');
                     }
@@ -85,7 +88,8 @@ abstract class RoleCommand extends ContainerAwareCommand
             $role = $this->getHelper('dialog')->askAndValidate(
                 $output,
                 'Please choose a role:',
-                function($role) {
+                function($role)
+                {
                     if (empty($role)) {
                         throw new \Exception('Role can not be empty');
                     }

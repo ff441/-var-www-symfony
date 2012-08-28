@@ -68,22 +68,22 @@ jms_security_extra:
 
 
 fos_user:
-    db_driver:     orm                        
-    firewall_name: main                       
-    user_class:    MyApp\UserBundle\Entity\User 
+    db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
+    firewall_name: main                       # Le nom du firewall duquel on utilisera ces utilisateurs
+    user_class:    MyApp\UserBundle\Entity\User # La classe de l'entité User que nous venons de définir
     
     # Permet de renseigner le nouveau formulaire d'inscription
     registration:
-    form:
-        type: myapp_user_registration
+        form:
+            type: myapp_user_registration
+
+        confirmation:            
+            template: MyAppUserBundle:Mail:registration.email.twig
+            enabled:    true
+            from_email:
+                # Adresse de l'expediteur
+                address:        noreply@monsiteweb.com
+                # Nom de l'expediteur
+                sender_name:    Admin de monsiteweb.com
         
-    confirmation:
-        enabled:    true
-        from_email:
-            # Adresse de l'expediteur
-            address:        noreply@monsiteweb.com
-            # Nom de l'expediteur
-            sender_name:    Admin de monsiteweb.com
-    # Permet de définir le template de l'email à envoyer (en html)
-    email:
-        template: MyAppUserBundle:Mail:registration.email.twig
+            
