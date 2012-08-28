@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * Header
+ * ----------
+ * 28/08/2012
+ * AJOUT du bundle FOS (Gestion des utilisateurs) 
+ */
+
+
+
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -18,6 +27,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new MyApp\GdaBundle\MyAppGdaBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
