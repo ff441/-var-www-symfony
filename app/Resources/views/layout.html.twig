@@ -1,4 +1,10 @@
 ﻿{# app/Resources/views/layout.html.twig #}
+﻿{# HEADER #}
+﻿{# --------------------------------------- #}
+ {# 28/08/2012﻿                             #}
+ {# Ajout de la partie identification       #}
+﻿{# --------------------------------------- #}
+
 
 <!DOCTYPE html>
 <html>
@@ -13,8 +19,21 @@
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="container">                                                                    
+                    
 			<div id="header" class="hero-unit">
+                            
+                                <div class="offset10">                            
+                                    {# IS_AUTHENTICATED_REMEMBERED correspond à un utilisateur qui s'est identifié en rentrant son mot de passe, ou à un utilisateur qui s'est identifié automatiquement grâce à son cookie remember_me #}
+                                    {# On pourrait utiliser IS_AUTHENTICATED_FULLY qui correspond à un utilisateur qui s'est forcément identifié en rentrant son mot de passe (utile pour les opérations sensibles comme changer d'email #}
+
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        Connecté en tant que {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                                    {% else %}
+                                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                                    {% endif %}                                        
+                                </div>
+                            
 				<h1>Gestion des anomalies</h1>
 				<p>Projet d'étude sur symfony pour gérer les anomalies d'un projet</p>
 				<p><a class="btn btn-primary btn-large" href="http://srblog.info">
