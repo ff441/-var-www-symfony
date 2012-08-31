@@ -5,7 +5,9 @@
 # Ajout des routes de FOSUserBundle
 #--------------------------------
 
-
+#--------------------------------
+# Partie Gestion des Anomalies
+#--------------------------------
 myapp_accueil:
   pattern: /
   defaults: { _controller: MyAppGdaBundle:Default:index }
