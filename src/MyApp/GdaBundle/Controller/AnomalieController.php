@@ -158,7 +158,7 @@ class AnomalieController extends Controller {
             }
 	}
 
-	return $this->container->get('templating')->renderResponse('MyAppGdaBundle:Anomalie:creer.html.twig',
+	return $this->container->get('templating')->renderResponse('MyAppGdaBundle:Anomalie:lister.html.twig',
 	array(
 	'form' => $form->createView(),
 	'message' => $message,
